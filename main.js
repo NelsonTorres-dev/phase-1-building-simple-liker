@@ -36,7 +36,15 @@ heartSpan.addEventListener('click', handleHeart)
 function handleHeart(e) {
  const heart = e.target
   mimicServerCall('fakeURL')
-  .then(console.log('succsses'))
+  .then(() => {
+    if (heart.textContent === EMPTY_HEART) {
+      heart.textContent = FULL_HEART
+      heart.classList.add('activated-heart')
+    } else {
+      heart.textContent = EMPTY_HEART
+      heart.classList.remove('activated-heart')
+    }
+  })
   .catch(error => {
    const errorModal = document.querySelector("#modal")
   //  console.log(errorModal)
